@@ -1,0 +1,155 @@
+html{
+
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    max-height: 100vh;
+    font-family: sans-serif;
+}
+
+.flex{
+    display: flex;
+}
+
+
+h1,h2,h3,h4,h5,h6,p,label,span{
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    font-size: 1.25rem;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    margin: 1rem auto 2rem;
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+h4{
+    font-size: 1.5rem;
+}
+
+input{
+    display: none;
+}
+
+.dropBox{
+    display: flex;
+}
+
+.dropBox label{
+    margin-right: 2rem;
+}
+
+.btn{
+    outline: none;
+    padding: 1em 1.5em;
+    border: 1px solid black;
+    background: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: normal;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+}
+.btn:active{
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+}
+
+.progressBar{
+    width: 75%;
+    margin: 0 auto 2rem;
+    height: 1rem;
+    border: 1px solid #cccccc;
+}
+
+.hero{
+    position: relative;
+    width: 75%;
+    margin:1rem auto;
+    border: 1px solid #cccccc;
+    padding: 1rem;
+}
+
+.right{
+    margin-left: 1rem;
+    border: 1px solid black;
+    padding: .5em;
+}
+
+.right h4{
+    text-align: center;
+}
+
+.left textarea{
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    overflow-y: scroll;
+    resize: none;
+    padding: .5rem;
+    height: 50vh;
+    outline: none;
+}
+
+.left .left-row-3{
+    margin-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.audioplayer-wrap{
+    align-items: center;
+}
+
+
+.audio-player{
+    height: 3rem;
+}
+
+.btn-save{
+    margin-right: 2rem;
+}
+
+.audio-element{
+    text-align: center;
+    width: 100%;
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    border: 1px dotted black;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
