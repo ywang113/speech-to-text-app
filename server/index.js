@@ -2,12 +2,11 @@ const express = require('express');
 
 const cors = require('cors');
 
-const uploadHandler = require('./helper/123').uploadHandler
+const uploadHandler = require('./helper/uploadHandler').uploadHandler
 const uploadRouter = require('./router/upload').uploadRouter
 
 // storage files that been uploaded to GCS
 const app = express();
-
 app.use(cors());
 
 /**
@@ -20,8 +19,12 @@ app.use(cors());
  * 1. 函数封装
  * 2. 单独的文件放所有出现的string，除了log类的
  */
-app.post('/upload',uploadHandler.any(), async (req,res) =>{ await uploadHandler(req,res) });
+app.post('/upload',uploadHandler.any(), async (req,res) => {uploadRouter(req,res)} );
 
+
+/**
+ * TODO: cb function encapsulation
+ */
 app.post('/convert', uploadHandler.any(), async function(req, res) {
   console.log(req.files)
   const GCSfiles = []
@@ -91,9 +94,7 @@ app.post('/convert', uploadHandler.any(), async function(req, res) {
   });
 });
 
-/*
-  
-*/
+
 app.listen(8000, ()=>{
   console.log('app running on port 8000')
 })
