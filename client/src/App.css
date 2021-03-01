@@ -11,7 +11,6 @@ body{
     padding: 0;
     max-height: 100vh;
     font-family: sans-serif;
-    position: relative;
 }
 
 .flex{
@@ -85,10 +84,10 @@ input{
     box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
 }
 
-.usage{
+.progressBar{
     width: 75%;
     margin: 0 auto 2rem;
-    padding: .5rem;
+    height: 1rem;
     border: 1px solid #cccccc;
 }
 
@@ -134,7 +133,6 @@ input{
 
 .audio-player{
     height: 3rem;
-    outline: none;
 }
 
 .btn-save{
@@ -154,8 +152,4 @@ input{
 a{
     text-decoration: none;
     color: black;
-}
-
-#root{
-    padding: 1rem 0;
 }
