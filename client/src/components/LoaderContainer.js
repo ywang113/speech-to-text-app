@@ -19,6 +19,7 @@ export default function LoaderContainer({isLoading}) {
         backdropFilter: 'blur(4px)',
         transition:'1s'
     }
+    //
     return (
         <div style = {style}>
             <Loader type = 'ThreeDots' color = '#eeeeee'/>
