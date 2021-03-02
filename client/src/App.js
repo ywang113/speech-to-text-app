@@ -76,7 +76,7 @@ export default function App() {
     const onClickHandler = () =>{
 
         const data = new FormData();
-        if(!files){
+        if(Object.keys(files).length === 0 && files.constructor === Object){
             alert("No file choosen")
             return
         }
@@ -86,9 +86,9 @@ export default function App() {
         }
 
         setIsLoading('true')
-
         axios.post("http://localhost:8000/convert",data)
         .then(res => {
+            
             console.log(res.data)
             setRes(res.data);
 
