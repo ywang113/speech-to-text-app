@@ -88,8 +88,6 @@ export default function App() {
         setIsLoading('true')
         axios.post("http://localhost:8000/convert",data)
         .then(res => {
-            
-            console.log(res.data)
             setRes(res.data);
 
             res.data.forEach( item => {
