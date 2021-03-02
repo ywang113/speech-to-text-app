@@ -1,5 +1,4 @@
 
-
 exports.speech2TextPromise = function(file){
 
   return new Promise( async (resolve, reject) => {
