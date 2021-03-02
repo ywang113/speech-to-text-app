@@ -7,7 +7,6 @@ import Loader from './components/LoaderContainer';
 import * as constants from './common/constants'
 import './App.css';
 
-console.log(constants)
 
 export default function App() {
     const [files, setFiles] = useState({});
@@ -88,32 +87,24 @@ export default function App() {
 
         setIsLoading('true')
 
-        axios.post("http://localhost:8000/upload",data)
-        .then( res => {
-            //if the file upload successful, then request the convert route
-            if(res.status === 200){
-                axios.post("http://localhost:8000/convert",data)
-                .then(res => {
-                    console.log(res.data)
-                    setRes(res.data);
+        axios.post("http://localhost:8000/convert",data)
+        .then(res => {
+            console.log(res.data)
+            setRes(res.data);
 
-                    res.data.forEach( item => {
-                        if(item.filename === selectedAudio.filename){
+            res.data.forEach( item => {
+                if(item.filename === selectedAudio.filename){
 
-                            setText(item.transcription);
-                            setConfidence(item.confidence);
-                            return
-                        }
-                        return
-                    })
-                    setIsLoading(false);
-                })
-            }
-            else{
-                alert(`Error Code with ${res.status}`);
-            }
+                    setText(item.transcription);
+                    setConfidence(item.confidence);
+                    return
+                }
+                return
+            })
+            setIsLoading(false);
         })
     }
+
 
     useEffect(()=>{
         if(audioObj.length !== 0){
@@ -132,7 +123,7 @@ export default function App() {
                     <h4>University of Tasmania</h4>
                 </div>
                 <div className = "dropBox">
-                    <label htmlFor = "file" className = "btn">Upload Files</label>
+                    <label htmlFor = "file" className = "btn">Select Files</label>
                     <input type = "file" className="form-control"  id = "file" multiple onChange = {onChangeHandler}/>    
                     <button type="button" className = "btn" onClick = {onClickHandler}>Transcript</button>      
                 </div>
