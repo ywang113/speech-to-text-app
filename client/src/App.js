@@ -1,17 +1,21 @@
-import React from 'react'
-import {useState,useEffect} from 'react'
-import axios from 'axios'
-import ReactAudioPlayer from 'react-audio-player'
-import {CSVLink} from 'react-csv'
-import './App.css'
+import React from 'react';
+import {useState,useEffect} from 'react';
+import axios from 'axios';
+import ReactAudioPlayer from 'react-audio-player';
+import {CSVLink} from 'react-csv';
+import Loader from './components/LoaderContainer';
+import * as constants from './common/constants'
+import './App.css';
+
 
 export default function App() {
-    const [files, setFiles] = useState({})
-    const [audioObj,setAudioObj] = useState([])
-    const [text, setText] = useState([])
-    const [res,setRes] = useState()
-    const [selectedAudio, setSelectedAudio] = useState({})
-    const [confidence,setConfidence] = useState("N/A")
+    const [files, setFiles] = useState({});
+    const [audioObj,setAudioObj] = useState([]);
+    const [text, setText] = useState([]);
+    const [res,setRes] = useState();
+    const [selectedAudio, setSelectedAudio] = useState({});
+    const [confidence,setConfidence] = useState("N/A");
+    const [isLoading,setIsLoading] = useState(false);
 
     const checkMimeType = event =>{
         let files = event.target.files 
@@ -30,35 +34,39 @@ export default function App() {
       
        if (err !== '') { // if message not same old that mean has error 
             event.target.value = null // discard selected file
-            console.log(err)
+            alert ('some error occurs')
              return false; 
         }
        return true;
     }
 
     const onChangeHandler = event =>{
-        let files = event.target.files
+        let files = event.target.files;
+
         if(checkMimeType(event)){
-            let newArray = []
-            setFiles(files)
+
+            let newAudioObjs = [];
+            setFiles(files);
+
             for(let i = 0; i < files.length ;i++){
-                newArray.push({
+                newAudioObjs.push({
                     path: URL.createObjectURL(files[i]),
                     filename: files[i].name
                 })
-                setAudioObj([...audioObj, ...newArray])
+
+            setAudioObj([...audioObj, ...newAudioObjs])
             }
         }
     }
 
     const handleAudioClick = (audio) =>{
-        setSelectedAudio(audio)
-        console.log(audio)
+        setSelectedAudio(audio);
+
         if(res!== undefined){
             res.forEach(data => {
                 if(audio.filename === data.filename){
-                    setText(data.transcription)
-                    setConfidence(data.confidence)
+                    setText(data.transcription);
+                    setConfidence(data.confidence);
                 }
                 return
             })
@@ -66,44 +74,37 @@ export default function App() {
     }
     
     const onClickHandler = () =>{
-        const data = new FormData()
+
+        const data = new FormData();
         if(!files){
             alert("No file choosen")
             return
         }
+
         for(let i = 0 ; i < files.length ; i++){
             data.append('file',files[i])
         }
-        axios.post("http://localhost:8000/upload",data)
-        .then( res => {
-            /**
-             * TODO: Use Switch to structure the code
-             *       获取视频文件名
-             */
-            //if the file upload successful, then request the convert route
-            if(res.status === 200){
-                axios.post("http://localhost:8000/convert")
-                .then(res => {
-                    setRes(res.data)
-                    res.data.forEach( item => {
-                        if(item.filename === selectedAudio.filename){
-                            setText(item.transcription)
-                            setConfidence(item.confidence)
-                            return
-                        }
-                        return
-                    })
-                    // const newData = res.data.map((item, index)=> {
-                    //     return {...item, ...audioObj[index]}
-                    // })
-                    // setData(newData)
-                })
-            }
-            else{
-                alert(`Error Code with ${res.status}`)
-            }
+
+        setIsLoading('true')
+
+        axios.post("http://localhost:8000/convert",data)
+        .then(res => {
+            console.log(res.data)
+            setRes(res.data);
+
+            res.data.forEach( item => {
+                if(item.filename === selectedAudio.filename){
+
+                    setText(item.transcription);
+                    setConfidence(item.confidence);
+                    return
+                }
+                return
+            })
+            setIsLoading(false);
         })
     }
+
 
     useEffect(()=>{
         if(audioObj.length !== 0){
@@ -112,6 +113,9 @@ export default function App() {
     },[audioObj])
 
     return (
+       <>
+        <Loader isLoading = {isLoading}></Loader>
+
         <div>
             <header>
                 <div className = "logo">
@@ -119,13 +123,15 @@ export default function App() {
                     <h4>University of Tasmania</h4>
                 </div>
                 <div className = "dropBox">
-                    <label htmlFor = "file" className = "btn">Upload Files</label>
+                    <label htmlFor = "file" className = "btn">Select Files</label>
                     <input type = "file" className="form-control"  id = "file" multiple onChange = {onChangeHandler}/>    
                     <button type="button" className = "btn" onClick = {onClickHandler}>Transcript</button>      
                 </div>
             </header>
-            <div className = "progressBar"> 
-
+            <div className = "usage"> 
+                <p>
+                    * this app only support .wav format at the moment 
+                </p>
             </div>
             <div className = "hero flex">
                 <div className = "left col-8">
@@ -158,7 +164,15 @@ export default function App() {
                     <div className = "flex left-row-3">
                         <p>Confidence: {confidence} </p>
                         <div>
-                            <CSVLink data={ res === undefined ? "none" : res } className = "btn btn-download">Download CSV</CSVLink>
+                            <CSVLink data={ res === undefined ? "none" : res } onClick = {()=>{
+                                setFiles({})
+                                setAudioObj([])
+                                setSelectedAudio({})
+                                setAudioObj([])
+                                setText([])
+                                setConfidence('N/A')
+                                window.location.reload()
+                            }} className = "btn btn-download">Download CSV</CSVLink>
                         </div>
                     </div>
                 </div>
@@ -174,6 +188,7 @@ export default function App() {
                 </div>
             </div>
         </div>
+    </>
     )
 
 }
