@@ -86,7 +86,7 @@ export default function App() {
             data.append('file',files[i])
         }
 
-        // setIsLoading('true')
+        setIsLoading('true')
 
         axios.post("http://localhost:8000/upload",data)
         .then( res => {
@@ -94,6 +94,7 @@ export default function App() {
             if(res.status === 200){
                 axios.post("http://localhost:8000/convert",data)
                 .then(res => {
+                    console.log(res.data)
                     setRes(res.data);
 
                     res.data.forEach( item => {
