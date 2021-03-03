@@ -88,7 +88,7 @@ export default function App() {
         setIsLoading('true')
         axios.post("http://3.24.137.31/convert",data)
         .then(res => {
-            console.log(res)
+            console.log(res.data)
             setRes(res.data);
 
             res.data.forEach( item => {
