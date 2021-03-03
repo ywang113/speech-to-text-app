@@ -86,7 +86,7 @@ export default function App() {
         }
 
         setIsLoading('true')
-        axios.post("http://localhost:8000/convert",data)
+        axios.post("http://3.24.137.31//convert",data)
         .then(res => {
             setRes(res.data);
 
