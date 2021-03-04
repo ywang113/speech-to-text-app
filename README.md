@@ -16,7 +16,7 @@ http://www.speech2text.link/
 * Transcripting the audio file.\
 ![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/screenshot/04_transcripting_screen.png)
 * Result of the transcription\
-![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/screenshot/04_transcripting_screen.png)
+![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/screenshot/05_after_transcript.png)
 * Final output will be in .CSV file format\
 ![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/screenshot/06_final_outcome.png)
 
