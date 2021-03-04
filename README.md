@@ -8,17 +8,17 @@ http://www.speech2text.link/
 
 # Screen Shots
 * The initial screen\
-![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/assets/01_initial_screen.png)
+![picture](https://github.com/boguss1225/speech-to-text-app/blob/screenshot/01_initial_screen.png)
 * The selecting audio files (.wav) to be uploaded\
-![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/assets/02_select_files_screen.png)
+![picture](https://github.com/boguss1225/speech-to-text-app/blob/screenshot/02_select_files_screen.png)
 * Display selected audio files (.wav)\
-![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/assets/03_after_select_files_screen.png)
+![picture](https://github.com/boguss1225/speech-to-text-app/blob/screenshot/03_after_select_files_screen.png)
 * Transcripting the audio file.\
-![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/assets/04_transcripting_screen.png)
+![picture](https://github.com/boguss1225/speech-to-text-app/blob/screenshot/04_transcripting_screen.png)
 * Result of the transcription\
-![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/assets/05_after_transcript.png)
+![picture](https://github.com/boguss1225/speech-to-text-app/blob/screenshot/05_after_transcript.png)
 * Final output will be in .CSV file format\
-![picture](https://github.com/boguss1225/speech-to-text-app/blob/master/assets/06_final_outcome.png)
+![picture](https://github.com/boguss1225/speech-to-text-app/blob/screenshot/06_final_outcome.png)
 
 
 # Description
