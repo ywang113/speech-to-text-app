@@ -17,6 +17,10 @@ app.use(cors());
  */
 app.post(`${routerPaths.convert}`, uploadHandler.any(), async (req,res) => {convertRouter(req,res)} );
 
+'localhost'
+'192.168.0.1:8000/route'
+
+
 app.listen(8000, ()=>{
   console.log('app running on port 8000')
 })
